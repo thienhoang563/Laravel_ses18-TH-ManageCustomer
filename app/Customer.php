@@ -12,7 +12,7 @@ class Customer extends Model
     {
     }
 
-    public static function findOrFall(int $id)
-    {
+    public function city(){
+        return $this->belongsTo('App\City');
     }
 }
