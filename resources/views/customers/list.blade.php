@@ -31,6 +31,21 @@
                     </div>
                 @endif
             </div>
+            <div class="col-6">
+                <form class="navbar-form navbar-left" action="{{route('customers.search')}}">
+                    @csrf
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="form-group">
+                                <input type="text" name="keyword" class="form-control" placeholder="Search">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-default">Tìm kiếm</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -63,7 +78,10 @@
                 @endif
                 </tbody>
             </table>
-            <a class="btn btn-primary" href="{{ route('customers.create') }}">Thêm mới</a>
+            <div><a class="btn btn-primary" href="{{ route('customers.create') }}">Thêm mới</a></div>
+        </div>
+        <div class="float-right">
+            <p>{{ $customers->appends(request()->query()) }}</p>
         </div>
 
         <!-- Modal -->
@@ -113,4 +131,5 @@
             </div>
         </div>
     </div>
+
 @endsection
