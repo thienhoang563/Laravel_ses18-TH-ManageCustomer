@@ -103,6 +103,7 @@
                                         <select class="custom-select w-100" name="city_id">
                                             <option value="">Chọn tỉnh thành</option>
                                             @foreach($cities as $city)
+
                                                 @if(isset($cityFilter))
                                                     @if($city->id == $cityFilter->id)
                                                         <option value="{{$city->id}}" selected >{{ $city->name }}</option>

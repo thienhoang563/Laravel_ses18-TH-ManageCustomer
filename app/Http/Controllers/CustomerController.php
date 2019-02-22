@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\City;
 use App\Customer;
+use App\Http\Requests\ValidationFormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -27,9 +28,8 @@ class CustomerController extends Controller
         //kiem tra city co ton tai khong
 
         $cityFilter = City::find($idCity);
-        //dd($cityFilter);
         //lay ra tat ca customer cua cityFiler
-        $customers = Customer::where('city_id', $cityFilter->id)->get();
+        $customers = Customer::where('city_id', $cityFilter->id)->paginate(5);
 
         $totalCustomerFilter = count($customers);
         $cities = City::all();
@@ -51,10 +51,10 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\ValidationFormRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ValidationFormRequest $request)
     {
         $customer = new Customer();
         $customer->name  = $request->input('name');
@@ -95,11 +95,11 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\ValidationFormRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ValidationFormRequest $request, $id)
     {
         $customer = Customer::find($id);
         $customer->name  = $request->input('name');

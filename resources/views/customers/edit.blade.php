@@ -18,6 +18,15 @@
                         <label>Ngày sinh</label>
                         <input type="date" class="form-control" name="dob" value="{{ $customer->dob }}" required>
                     </div>
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="form-group">
                         <label>Tỉnh thành</label>
                         <select class="form-control" name="city_id">
