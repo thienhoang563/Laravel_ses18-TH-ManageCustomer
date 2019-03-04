@@ -12,7 +12,32 @@
 </head>
 <body>
 <div class="container">
+    <div class="col-12 menu">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link
+                            @if(Session::get('website_language') == 'en')
+                                text-danger
+                            @endif"
+                           href="{!! route('user.change-language', ['en']) !!}">EN <span
+                                    class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link
+                            @if(Session::get('website_language') == 'vi')
+                                text-danger
+                            @endif
+                                " href="{!! route('user.change-language', ['vi']) !!}">VI</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+<div class="container">
     @yield('content')
+</div>
 </div>
 </body>
 </html>

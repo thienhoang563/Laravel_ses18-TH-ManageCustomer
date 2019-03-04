@@ -1,17 +1,17 @@
 @extends('home')
-@section('title', 'Thêm mới khách hàng')
+@section('title', __('messages.add_new'))
 
 @section('content')
     <div class="col-12 col-md-12">
         <div class="row">
             <div class="col-12">
-                <h1>Thêm mới khách hàng</h1>
+                <h1>{{__('messages.add_new')}}</h1>
             </div>
             <div class="col-12">
                 <form method="post" action="{{ route('customers.store') }}">
                     @csrf
                     <div class="form-group">
-                        <label>Tên khách hàng</label>
+                        <label>{{__('messages.customer_name')}}</label>
                         <input type="text" class="form-control" name="name"  placeholder="Enter name" required>
                     </div>
                     <div class="form-group">
@@ -32,15 +32,15 @@
                         </div>
                     @endif
                     <div class="form-group">
-                        <label>Tỉnh thành</label>
+                        <label>{{__('messages.city')}}</label>
                         <select class="form-control" name="city_id">
                             @foreach($cities as $city)
                                 <option value="{{ $city->id }}">{{ $city->name }}</option>
                             @endforeach
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <button class="btn btn-secondary" onclick="window.history.go(-1); return false;">Hủy</button>
+                    <button type="submit" class="btn btn-primary">{{__('messages.choose')}}</button>
+                    <button class="btn btn-secondary" onclick="window.history.go(-1); return false;">{{__('messages.cancel')}}</button>
                 </form>
             </div>
         </div>

@@ -1,14 +1,14 @@
 @extends('home')
-@section('title', 'Danh sách khách hàng')
+@section('title', __('messages.customer_list'))
 
 @section('content')
     <div class="col-12">
         <div class="row">
             <div class="col-12">
-                <h1>Danh Sách Khách Hàng</h1>
+                <h1>{{__('messages.customer_list')}}</h1>
             </div>
             <a class="btn btn-outline-primary" href="" data-toggle="modal" data-target="#cityModal">
-                Lọc
+                {{__('messages.filter')}}
             </a>
             <div class="col-12">
                 @if (Session::has('success'))
@@ -20,14 +20,14 @@
 
                 @if(isset($totalCustomerFilter))
                     <span class="text-muted">
-                      {{'Tìm thấy' . ' ' . $totalCustomerFilter . ' '. 'khách hàng:'}}
+                      {{__('messages.find') . ' ' . $totalCustomerFilter . ' '. __('messages.customer')}}
                   </span>
                 @endif
 
                 @if(isset($cityFilter))
                     <div class="pl-5">
                      <span class="text-muted"><i class="fa fa-check" aria-hidden="true"></i>
-                         {{ 'Thuộc tỉnh' . ' ' . $cityFilter->name }}</span>
+                         {{ __('messages.from') . ' ' . $cityFilter->name }}</span>
                     </div>
                 @endif
             </div>
@@ -41,7 +41,7 @@
                             </div>
                         </div>
                         <div class="col-4">
-                            <button type="submit" class="btn btn-default">Tìm kiếm</button>
+                            <button type="submit" class="btn btn-default">{{__('messages.search')}}</button>
                         </div>
                     </div>
                 </form>
@@ -50,10 +50,10 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Tên khách hàng</th>
-                    <th scope="col">Ngày Sinh</th>
+                    <th scope="col">{{__('messages.customer_name')}}</th>
+                    <th scope="col">{{__('messages.dob')}}</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Tỉnh thành</th>
+                    <th scope="col">{{__('messages.city')}}</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -71,14 +71,14 @@
                             <td>{{ $customer->dob }}</td>
                             <td>{{ $customer->email }}</td>
                             <td>{{ $customer->city['name'] }}</td>
-                            <td><a href="{{ route('customers.edit', $customer->id) }}">sửa</a></td>
-                            <td><a href="{{ route('customers.destroy', $customer->id) }}" class="text-danger" onclick="return confirm('Bạn chắc chắn muốn xóa?')">xóa</a></td>
+                            <td><a href="{{ route('customers.edit', $customer->id) }}">{{__('messages.update')}}</a></td>
+                            <td><a href="{{ route('customers.destroy', $customer->id) }}" class="text-danger" onclick="return confirm('Bạn chắc chắn muốn xóa?')">{{__('messages.delete')}}</a></td>
                         </tr>
                     @endforeach
                 @endif
                 </tbody>
             </table>
-            <div><a class="btn btn-primary" href="{{ route('customers.create') }}">Thêm mới</a></div>
+            <div><a class="btn btn-primary" href="{{ route('customers.create') }}">{{__('messages.add_new')}}</a></div>
         </div>
         <div class="float-right">
             <p>{{ $customers->appends(request()->query()) }}</p>
@@ -98,10 +98,10 @@
                             <!--Lọc theo khóa học -->
                             <div class="select-by-program">
                                 <div class="form-group row">
-                                    <label  class="col-sm-5 col-form-label border-right">Lọc khách hàng theo tỉnh thành</label>
+                                    <label  class="col-sm-5 col-form-label border-right">{{__('messages.filter_by_cities')}}</label>
                                     <div class="col-sm-7">
                                         <select class="custom-select w-100" name="city_id">
-                                            <option value="">Chọn tỉnh thành</option>
+                                            <option value="">{{__('messages.choose_city')}}</option>
                                             @foreach($cities as $city)
 
                                                 @if(isset($cityFilter))
@@ -124,8 +124,8 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" id="submitAjax" class="btn btn-primary" >Chọn</button>
-                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
+                            <button type="submit" id="submitAjax" class="btn btn-primary" >{{__('messages.choose')}}</button>
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{__('messages.cancel')}}</button>
                         </div>
                     </div>
                 </form>
